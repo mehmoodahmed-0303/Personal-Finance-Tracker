@@ -16,14 +16,28 @@ def add_transaction(t_type, category, amount, description):
 		writer = csv.writer(file)
 		writer.writerow([date, t_type, category, amount, description])
 def get_user_transaction():
-	t_type = input("Enter transaction type (income/expense) :").lower()
-	if t_type not in ['income', 'expense']:
-		t_type = input("Invalid type. Enter 'income' or 'expense': ").lower()
-	category = input("Enter category (e.g., salary, groceries) :")
-	amount = float(input("Enter amount :"))
-	while amount <= 0:
-		amount = float(input("Amount must be positive. Enter amount: "))
-	description = input("Enter description: ")
+	try:
+		t_type = input("Enter type (income/expense): ")
+		while t_type not in ['income', 'expense']:
+			t_type = input("Invalid type. Enter 'income' or 'expense': ").lower().strip()
+		category = input("Enter category (e.g., salary, groceries) :").strip()
+		if not category:
+			raise ValueError("category can not be empty")
+
+		amount_input = input("Enter amount (positive number): ").strip()
+		amount = float(amount_input)
+		while amount <= 0:
+			amount_input = input("Amount must be positive. Enter amount: ").strip()
+			amount = float(amount_input)
+
+		description = input("Enter description: ").strip()
+	except ValueError as e:
+		if str(e):
+			print(f"Error: {e}")
+		else:
+			print("Error: Invalid amount. Please enter a valid number.")
+	except Exception as e:
+		print(f"Unexpected error: {e}")
 	add_transaction(t_type, category, amount, description)
 	print("transaction recorded!")
 
