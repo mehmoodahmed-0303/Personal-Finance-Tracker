@@ -6,3 +6,5 @@ date,type,category,amount,description
 2025-05-31 11:27:14,expense,instrument,500.0,500 usd for some house use instrument
 2025-05-31 14:28:19,income,groceries,1500.0,
 2025-05-31 14:29:06,income,salary,450000.0,heyy this is a random transactions details
+2025-05-31 14:41:13,expense,groceries,4500.0,"hello, World!"
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25

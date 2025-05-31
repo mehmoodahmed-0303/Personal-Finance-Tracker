@@ -53,9 +53,34 @@ def display_transactions():
 	except FileNotFoundError:
 		print("No Transactions found.")
 
+def calculate_balance():
+	try:
+		total_income = 0
+		total_expense = 0
+		with open(DATA_FILE, 'r') as file:
+			reader = csv.reader(file)
+			next(reader)
+			for row in reader:
+				amount = float(row[3])
+				if row[1].lower() == 'income':
+					total_income += amount
+				elif row[1].lower() == 'expense':
+					total_expense += amount
+		balance = total_income - total_expense
+		print(f"\nTotal Income: ${total_income:.2f}")
+		print(f"Total Expenses: ${total_expense:.2f}")
+		print(f"Current Balance: ${balance:.2f}")
+		return balance
+	except FileNotFoundError:
+		print("No Transactions cound")
+		return 0
+	except ValueError:
+		print("Invalid amount found in transactions")
+		return 0
 
 if __name__ == "__main__":
     initialize_csv()
     get_user_transaction()
     display_transactions()
+    calculate_balance()
     print("Personal Finance Tracker initialized.")
