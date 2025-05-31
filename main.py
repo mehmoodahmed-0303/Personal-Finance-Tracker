@@ -78,9 +78,27 @@ def calculate_balance():
 		print("Invalid amount found in transactions")
 		return 0
 
+def show_menu():
+	while True:
+		print("\nPersonal Finance Tracker Menu: ")
+		print("1. Add Transaction")
+		print("2. View Transaction History")
+		print("3. Check Balance")
+		print("4. Exit")
+		choice = input("Enter choice 1-4").strip()
+		try:
+			choice = int(choice)
+			if choice== 1:
+				get_user_transaction()
+			elif choice == 2:
+				display_transactions()
+			elif choice == 3:
+				calculate_balance()
+			elif choice == 4:
+				print("Exiting...")
+				break
+		except ValueError:
+			print("Invalid input. Please enter a number.")
 if __name__ == "__main__":
-    initialize_csv()
-    get_user_transaction()
-    display_transactions()
-    calculate_balance()
-    print("Personal Finance Tracker initialized.")
+	initialize_csv()
+	show_menu()
