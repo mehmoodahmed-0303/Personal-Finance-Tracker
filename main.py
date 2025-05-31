@@ -27,7 +27,21 @@ def get_user_transaction():
 	add_transaction(t_type, category, amount, description)
 	print("transaction recorded!")
 
+def display_transactions():
+	try:
+		with open(DATA_FILE, 'r') as file:
+			reader = csv.reader(file)
+			headers = next(reader) # Skip Header row
+			print("\nTransaction History: ")
+			print(f"{headers[0]:<20} {headers[1]:<10} {headers[2]:<15} {headers[3]:<10} {headers[4]}")
+			for row in reader:
+				print(f"{row[0]:<20} {row[1]:<10} {row[2]:<15} {row[3]:<10} {row[4]}")
+	except FileNotFoundError:
+		print("No Transactions found.")
+
+
 if __name__ == "__main__":
     initialize_csv()
     get_user_transaction()
+    display_transactions()
     print("Personal Finance Tracker initialized.")
