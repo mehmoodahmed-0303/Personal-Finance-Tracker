@@ -1,6 +1,7 @@
 import csv
 import os
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 DATA_FILE = "transactions.csv"
 
@@ -101,6 +102,34 @@ def category_report():
 		print("Invalid value for transactios found in expense.")
 
 
+def plot_expense_chart():
+	try:
+		categories = {}
+		with open(DATA_FILE, 'r') as file:
+			reader = csv.reader(file)
+			next(reader)
+			for row in reader:
+				if row[1].lower() == 'expense':
+					category = row[2]
+					amount = float(row[3])
+					categories[category] = categories.get(category, 0) + amount
+		if not categories:
+			print("No expense to plot.")
+			return
+		plt.bar(categories.keys(), categories.values(), color='skyblue')
+		plt.title("Expense by Category")
+		plt.xlabel("Category")
+		plt.ylabel("Amount ($)")
+		plt.xticks(rotation=45)
+		plt.tight_layout()
+		plt.show()
+	except FileNotFoundError:
+		print("No transactions found.")
+	except ValueError:
+		print("Error: Invalid amount found in transactions.")
+
+
+
 
 def show_menu():
 	while True:
@@ -109,8 +138,9 @@ def show_menu():
 		print("2. View Transaction History")
 		print("3. Check Balance")
 		print("4. Category Report")
-		print("5. Exit..")
-		choice = input("Enter choice 1-5: ").strip()
+		print("5. Plot Expense Chart")
+		print("6. Exit..")
+		choice = input("Enter choice 1-6: ").strip()
 		try:
 			choice = int(choice)
 			if choice== 1:
@@ -122,6 +152,8 @@ def show_menu():
 			elif choice == 4:
 				category_report()
 			elif choice == 5:
+				plot_expense_chart()
+			elif choice == 6:
 				print("Exiting...")
 				break
 			else:
