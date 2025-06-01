@@ -78,14 +78,39 @@ def calculate_balance():
 		print("Invalid amount found in transactions")
 		return 0
 
+def category_report():
+	try:
+		categories = {}
+		with open(DATA_FILE, 'r') as file:
+			reader = csv.reader(file)
+			next(reader)
+			for row in reader:
+				if row[1].lower() == 'expense':
+					category = row[2]
+					amount = float(row[3])
+					categories[category] = categories.get(category, 0) + amount
+		if not categories:
+			print("No expense found.")
+			return
+		print("\nExpense report by category: ")
+		for category, total in categories.items():
+			print(f"{category:<20}: {total:.2f}")
+	except FileNotFoundError:
+		print("No Transactions found!")
+	except ValueError:
+		print("Invalid value for transactios found in expense.")
+
+
+
 def show_menu():
 	while True:
 		print("\nPersonal Finance Tracker Menu: ")
 		print("1. Add Transaction")
 		print("2. View Transaction History")
 		print("3. Check Balance")
-		print("4. Exit")
-		choice = input("Enter choice 1-4").strip()
+		print("4. Category Report")
+		print("5. Exit..")
+		choice = input("Enter choice 1-5: ").strip()
 		try:
 			choice = int(choice)
 			if choice== 1:
@@ -95,10 +120,16 @@ def show_menu():
 			elif choice == 3:
 				calculate_balance()
 			elif choice == 4:
+				category_report()
+			elif choice == 5:
 				print("Exiting...")
 				break
+			else:
+				print("Invalid choice. Please enter 1-5.")
 		except ValueError:
 			print("Invalid input. Please enter a number.")
+
+
 if __name__ == "__main__":
 	initialize_csv()
 	show_menu()
