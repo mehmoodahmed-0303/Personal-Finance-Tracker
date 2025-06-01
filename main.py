@@ -129,6 +129,45 @@ def plot_expense_chart():
 		print("Error: Invalid amount found in transactions.")
 
 
+def delete_Transactions():
+	try:
+		transactions = []
+		with open(DATA_FILE, 'r') as file:
+			reader = csv.reader(file)
+			headers = next(reader)
+			transactions = list(reader)
+		if not transactions:
+			print("No transactions to delete!")
+			return
+
+		print("\nSelect Transactions to delete: ")
+		print(f"\n{'Index':<6} {headers[0]:<20} {headers[1]:<10} {headers[2]:15} {headers[3]:<10} {headers[4]}")
+		for i, row in enumerate(transactions, 1):
+			print(f"{i:<6} {row[0]:<20} {row[1]:<10} {row[2]:<15} {row[3]:<10} {row[4]}")
+		index = input("Enter transaction index to delete or 'cancel' to exit")
+		if index.lower() == 'cancel':
+			print("Deletion Canceled!")
+			return
+		try:
+			index = int(index) - 1
+			if 0 <= index <= len(transactions):
+				deleted = transactions.pop(index)
+				with open(DATA_FILE, 'w', newline='') as file:
+					writer = csv.writer(file)
+					writer.writerow(headers)
+					writer.writerows(transactions)
+					print(f"Deleted: {deleted[0]} | {deleted[1]} | {deleted[2]} | {deleted[3]} | {deleted[4]}")
+			else:
+				print("Invalid Index")
+		except ValueError:
+			print("Error: Please enter a valid number or 'cancel'")
+	except FileNotFoundError:
+		print("No transactions found.")
+	except Exception as e:
+		print(f"Unexpected error: {e}")
+
+
+
 
 
 def show_menu():
@@ -139,8 +178,9 @@ def show_menu():
 		print("3. Check Balance")
 		print("4. Category Report")
 		print("5. Plot Expense Chart")
-		print("6. Exit..")
-		choice = input("Enter choice 1-6: ").strip()
+		print("6. Delete Transaction")
+		print("7. Exit..")
+		choice = input("Enter choice 1-7: ").strip()
 		try:
 			choice = int(choice)
 			if choice== 1:
@@ -154,6 +194,8 @@ def show_menu():
 			elif choice == 5:
 				plot_expense_chart()
 			elif choice == 6:
+				delete_Transactions()
+			elif choice == 7:
 				print("Exiting...")
 				break
 			else:
