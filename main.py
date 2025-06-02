@@ -167,6 +167,56 @@ def delete_Transactions():
 		print(f"Unexpected error: {e}")
 
 
+def edit_transaction():
+	try:
+		transactions = []
+		with open(DATA_FILE, 'r') as file:
+			reader = csv.reader(file)
+			headers = next(reader)
+			transactions = list(reader)
+
+		if not transactions:
+			print("No transactions to edit")
+			return
+
+		print("\nSelect Transactions to edit:")
+		print(f"{'Index':<6} {headers[0]:<20} {headers[1]:<10} {headers[2]:<15} {headers[3]:<10} {headers[4]}")
+		for i, row in enumerate(transactions, 1):
+			print(f"{i:<6} {row[0]:<20} {row[1]:<10} {row[2]:<15} {row[3]:<10} {row[4]}")
+		index_input = input("Enter transaction index to edit or 'cancel' to exit: ").strip()
+		if index_input.lower() == 'cancel':
+			print("edit Canceled..")
+			return
+		try:
+			index = int(index_input) - 1
+			if 0 <= index <= len(transactions):
+				print(f"editing: {transactions[index][0]} | {transactions[index][1]} | {transactions[index][2]} | {transactions[index][3]} | {transactions[index][4]}")
+				t_type = input("Enter new transaction type (income/expense, or press enter to keep origional): ").lower().strip()
+				t_type = t_type if t_type in ['income','expense'] else transactions[index][1]
+				category = input("Enter new category (or press enter to keep origional)").strip()
+				category = category if category else transactions[index][2]
+				input_amount = input("Enter new amount (or press enter to keep origional)").strip()
+				amount = float(input_amount) if input_amount else transactions[index][3]
+				if amount <= 0:
+					print("new amount must be positive. keeping origional amount")
+					amount = float(transactions[index][3])
+				description = input("Enter new description (or press enter to keep origional)")
+				description = description if description else transactions[index][4]
+
+				transactions[index] = [datetime.now.strftime('%Y-%m-%d %H:%M:%S'), t_type, category, str(amount), description]
+				with open(DATA_FILE, 'w', newline='') as file:
+					writer = csv.writer(file)
+					writer.writerow(headers)
+					writer.writerows(transactions)
+				print("transaction Updated.")
+			else:
+				print("Invalid Index.")
+		except ValueError:
+			print("Error: Invalid input for amount or index")
+	except FileNotFoundError:
+		print("No transactions found for editing")
+	except Exception as e:
+		print(f"Unexpected error: {e}")
 
 
 
@@ -179,8 +229,9 @@ def show_menu():
 		print("4. Category Report")
 		print("5. Plot Expense Chart")
 		print("6. Delete Transaction")
-		print("7. Exit..")
-		choice = input("Enter choice 1-7: ").strip()
+		print("7. Edit Transaction")
+		print("8. Exit..")
+		choice = input("Enter choice 1-8: ").strip()
 		try:
 			choice = int(choice)
 			if choice== 1:
@@ -196,10 +247,12 @@ def show_menu():
 			elif choice == 6:
 				delete_Transactions()
 			elif choice == 7:
+				edit_transaction()
+			elif choice == 8:
 				print("Exiting...")
 				break
 			else:
-				print("Invalid choice. Please enter 1-5.")
+				print("Invalid choice. Please enter 1-8.")
 		except ValueError:
 			print("Invalid input. Please enter a number.")
 
