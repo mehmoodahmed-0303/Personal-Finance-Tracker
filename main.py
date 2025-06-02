@@ -229,7 +229,7 @@ def export_to_json():
 			reader = csv.reader(file)
 			headers = next(reader)
 			for row in reader:
-				transactions.append({'date':row[0],'type':row[1],'category':row[2],'amount':float(row[3]),'description':[4]})
+				transactions.append({'date':row[0],'type':row[1],'category':row[2],'amount':float(row[3]),'description':row[4]})
 		if  not transactions:
 			print("No transactions to export.")
 			return
@@ -245,7 +245,36 @@ def export_to_json():
 
 
 
-
+def import_from_json():
+	try:
+		with open('transactions.json', 'r') as file:
+			data = json.load(file)
+		if not data:
+			print("No transactions found in json files")
+			return
+		with open(DATA_FILE, 'a', newline='') as file:
+			writer = csv.writer(file)
+			for transaction in data:
+				try:
+					t_type = transaction['type'].lower()
+					if t_type not in ['income','expense']:
+						print(f"skipping invalid transaction {transaction}")
+						continue
+					amount = float(transaction['amount'])
+					if amount <= 0:
+						print(f"skipping invalid amount {transaction}")
+						continue
+					writer.writerow([transaction['date'], t_type, transaction['category'], str(amount), transaction['description']])
+				except (KeyError, ValueError) as e:
+					print(f"skipping invalid transaction {transaction} {e}")
+					continue
+		print("transactions imported from transactions.json")
+	except FileNotFoundError:
+		print("transactions.json not found.")
+	except json.JSONDecodeError:
+		print("Error: Invalid json format in transactions.json")
+	except Exception as e:
+		print(f"Unexpected error: {e}")
 
 
 
@@ -260,8 +289,9 @@ def show_menu():
 		print("6. Delete Transaction")
 		print("7. Edit Transaction")
 		print("8. Export to json")
-		print("9. Exit..")
-		choice = input("Enter choice 1-9: ").strip()
+		print("9. import from json")
+		print("10. Exit..")
+		choice = input("Enter choice 1-10: ").strip()
 		try:
 			choice = int(choice)
 			if choice== 1:
@@ -281,10 +311,12 @@ def show_menu():
 			elif choice == 8:
 				export_to_json()
 			elif choice == 9:
+				import_from_json()
+			elif choice == 10:
 				print("Exiting...")
 				break
 			else:
-				print("Invalid choice. Please enter 1-9.")
+				print("Invalid choice. Please enter 1-10.")
 		except ValueError:
 			print("Invalid input. Please enter a number.")
 

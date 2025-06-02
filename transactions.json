@@ -1,0 +1,58 @@
+[
+    {
+        "date": "2025-05-31 10:48:56",
+        "type": "income",
+        "category": "salary",
+        "amount": 1000.0,
+        "description": "Monthly salary"
+    },
+    {
+        "date": "2025-05-31 11:04:57",
+        "type": "expense",
+        "category": "groceries",
+        "amount": 750.0,
+        "description": "Aalu + roll + oil"
+    },
+    {
+        "date": "2025-05-31 11:24:44",
+        "type": "income",
+        "category": "salary",
+        "amount": 1500.0,
+        "description": "1500 usd the salary of month july"
+    },
+    {
+        "date": "2025-06-02 13:59:17",
+        "type": "expense",
+        "category": "groceries",
+        "amount": 1200.0,
+        "description": "1200 usd for pc and rent and etx"
+    },
+    {
+        "date": "2025-05-31 11:27:14",
+        "type": "expense",
+        "category": "instrument",
+        "amount": 500.0,
+        "description": "500 usd for some house use instrument"
+    },
+    {
+        "date": "2025-05-31 14:28:19",
+        "type": "income",
+        "category": "groceries",
+        "amount": 1500.0,
+        "description": ""
+    },
+    {
+        "date": "2025-05-31 14:42:06",
+        "type": "income",
+        "category": "sell",
+        "amount": 1500.0,
+        "description": "total sell on date 03/5/25"
+    },
+    {
+        "date": "2025-06-02 10:03:33",
+        "type": "income",
+        "category": "sell",
+        "amount": 950.0,
+        "description": "total sell of the day"
+    }
+]
