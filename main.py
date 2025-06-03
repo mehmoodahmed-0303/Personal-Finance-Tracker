@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import json
 
 DATA_FILE = "transactions.csv"
+CATEGORIES = ['salary','freelance','groceries','rent','utilities','entertainment','others']
 
 def initialize_csv():
     if not os.path.exists(DATA_FILE):
@@ -17,20 +18,29 @@ def add_transaction(t_type, category, amount, description):
 	with open(DATA_FILE, 'a', newline='') as file:
 		writer = csv.writer(file)
 		writer.writerow([date, t_type, category, amount, description])
+
+
+
 def get_user_transaction():
 	try:
 		t_type = input("Enter type (income/expense): ")
 		while t_type not in ['income', 'expense']:
 			t_type = input("Invalid type. Enter 'income' or 'expense': ").lower().strip()
+		print("Available catagories", ", ".join(CATEGORIES))
 		category = input("Enter category (e.g., salary, groceries) :").strip()
-		if not category:
-			raise ValueError("category can not be empty")
+		while category not in CATEGORIES:
+			category = input(f"Invalid category. choose rom {', '.join(CATEGORIES)}: ")
 
-		amount_input = input("Enter amount (positive number): ").strip()
-		amount = float(amount_input)
-		while amount <= 0:
-			amount_input = input("Amount must be positive. Enter amount: ").strip()
-			amount = float(amount_input)
+		while True:
+			amount_input = input("Enter amount (positive number): ").strip()
+			try:
+				amount = float(amount_input)
+				if amount <= 0:
+					print("Amount must be positive.")
+					continue
+				break
+			except ValueError:
+				print("Please enter a valid number")
 
 		description = input("Enter description: ").strip()
 	except ValueError as e:
@@ -195,8 +205,9 @@ def edit_transaction():
 					print(f"editing: {transactions[index][0]} | {transactions[index][1]} | {transactions[index][2]} | {transactions[index][3]} | {transactions[index][4]}")
 					t_type = input("Enter new transaction type (income/expense, or press enter to keep origional): ").lower().strip()
 					t_type = t_type if t_type in ['income','expense'] else transactions[index][1]
+					print(f"Available catagories: {", ".join(CATEGORIES)}")
 					category = input("Enter new category (or press enter to keep origional)").strip()
-					category = category if category else transactions[index][2]
+					category = category if category in CATEGORIES else transactions[index][2]
 					input_amount = input("Enter new amount (or press enter to keep origional)").strip()
 					amount = float(input_amount) if input_amount else float(transactions[index][3])
 					if amount <= 0:
