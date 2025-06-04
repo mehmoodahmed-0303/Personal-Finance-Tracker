@@ -318,6 +318,40 @@ def search_by_categories():
 		print(f"Unexpected error: {e}")
 
 
+def  monthly_summary_report():
+	try:
+		monthly_data = {}
+		with open(DATA_FILE, 'r') as file:
+			reader = csv.reader(file)
+			next(reader)
+			for row in reader:
+				date = row[0][:7]
+				t_type = row[1].lower()
+				amount = float(row[3])
+				if date not in monthly_data:
+					monthly_data[date] = {'income':0, 'expense':0}
+				if t_type == 'income':
+					monthly_data[date]['income'] += amount
+				if t_type == 'expense':
+					monthly_data[date]['expense'] += amount
+		if not monthly_data:
+			print("No transactions found for monthly summary.")
+
+		print("\nMonthly summary report: ")
+		print(f"{'year-month':<12} {'Income':<10} {'expense':<10} {'balance':<10}")
+		for date, data in sorted(monthly_data.items()):
+			balance = data['income'] - data['expense']
+			print(f"{date:<12} {data['income']:<10.2f} {data['expense']:<10.2f} {balance:<10.2f}")
+
+	except FileNotFoundError:
+		print("No transactions found.")
+	except ValueError:
+		print("Invalid data in transactions.")
+	except Exception as e:
+		print(f"Unexpected error: {e}")
+
+
+
 
 
 
@@ -334,8 +368,9 @@ def show_menu():
 		print("8. Export to json")
 		print("9. import from json")
 		print("10. Search by Category")
-		print("11. Exit..")
-		choice = input("Enter choice 1-11: ").strip()
+		print("11. Monthly summary report")
+		print("12. Exit..")
+		choice = input("Enter choice 1-12: ").strip()
 		try:
 			choice = int(choice)
 			if choice== 1:
@@ -359,10 +394,12 @@ def show_menu():
 			elif choice == 10:
 				search_by_categories()
 			elif choice == 11:
+				monthly_summary_report()
+			elif choice == 12:
 				print("Exiting...")
 				break
 			else:
-				print("Invalid choice. Please enter 1-11.")
+				print("Invalid choice. Please enter 1-12.")
 		except ValueError:
 			print("Invalid input. Please enter a number.")
 
