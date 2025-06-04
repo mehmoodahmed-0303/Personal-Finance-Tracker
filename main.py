@@ -289,6 +289,38 @@ def import_from_json():
 
 
 
+def search_by_categories():
+	try:
+		print("Available catagories:", ", ".join(CATEGORIES))
+		category = input("Enter category to search or cancel to exit: ").lower().strip()
+		if category == 'cancel':
+			print("search Canceled.")
+			return
+		if category not in CATEGORIES:
+			print(f"Invalid category. choose from {", ".join(CATEGORIES)}")
+			return
+
+		found = False
+		with open(DATA_FILE, 'r') as file:
+			reader = csv.reader(file)
+			headers = next(reader)
+			print(f"Transactions for category '{category}': ")
+			print(f"{headers[0]:<20}{headers[1]:<10}{headers[2]:<15}{headers[3]:<10}{headers[4]}")
+			for row in reader:
+				if row[2].lower() == category:
+					print(f"{row[0]:<20} {row[1]:<10} {row[2]:<15} {row[3]:<10} {row[4]}")
+					found = True
+			if not found:
+				print(f"No transactions found for category '{category}'")
+	except FileNotFoundError:
+		print("No transactions found")
+	except Exception as e:
+		print(f"Unexpected error: {e}")
+
+
+
+
+
 def show_menu():
 	while True:
 		print("\nPersonal Finance Tracker Menu: ")
@@ -301,8 +333,9 @@ def show_menu():
 		print("7. Edit Transaction")
 		print("8. Export to json")
 		print("9. import from json")
-		print("10. Exit..")
-		choice = input("Enter choice 1-10: ").strip()
+		print("10. Search by Category")
+		print("11. Exit..")
+		choice = input("Enter choice 1-11: ").strip()
 		try:
 			choice = int(choice)
 			if choice== 1:
@@ -324,10 +357,12 @@ def show_menu():
 			elif choice == 9:
 				import_from_json()
 			elif choice == 10:
+				search_by_categories()
+			elif choice == 11:
 				print("Exiting...")
 				break
 			else:
-				print("Invalid choice. Please enter 1-10.")
+				print("Invalid choice. Please enter 1-11.")
 		except ValueError:
 			print("Invalid input. Please enter a number.")
 
