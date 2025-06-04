@@ -4,9 +4,22 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import json
 
+
+
 DATA_FILE = "transactions.csv"
 CATEGORIES = ['salary','freelance','groceries','rent','utilities','entertainment','others']
-BUDGETS = {}
+def load_budgets():
+	global BUDGETS
+	BUDGETS = {}
+	try:
+		with open('budgets.json', 'r') as file:
+			budget = json.load(file)
+	except FileNotFoundError:
+		print("No budgets found.")
+	except JSONDecodeError:
+		print("error: Invalid budgets.json format. starting with empty budgets.")
+load_budgets()
+
 
 def initialize_csv():
     if not os.path.exists(DATA_FILE):
@@ -375,6 +388,9 @@ def set_budget():
 					print("budget must be positive")
 					continue
 				BUDGETS[category] = budget
+				with open('budgets.json', 'w') as file:
+					json.dump(BUDGETS, file, indent=4)
+
 				print(f"budget for {category} set to ${budget:.2f}")
 				break
 			except ValueError:
