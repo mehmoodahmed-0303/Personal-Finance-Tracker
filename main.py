@@ -6,6 +6,7 @@ import json
 
 DATA_FILE = "transactions.csv"
 CATEGORIES = ['salary','freelance','groceries','rent','utilities','entertainment','others']
+BUDGETS = {}
 
 def initialize_csv():
     if not os.path.exists(DATA_FILE):
@@ -23,7 +24,10 @@ def add_transaction(t_type, category, amount, description):
 
 def get_user_transaction():
 	try:
-		t_type = input("Enter type (income/expense): ")
+		t_type = input("Enter type (income/expense, or cancel to exit): ").lower().strip()
+		if t_type == 'cancel':
+			print("transactions canceled.")
+			return
 		while t_type not in ['income', 'expense']:
 			t_type = input("Invalid type. Enter 'income' or 'expense': ").lower().strip()
 		print("Available catagories", ", ".join(CATEGORIES))
@@ -106,7 +110,9 @@ def category_report():
 			return
 		print("\nExpense report by category: ")
 		for category, total in categories.items():
-			print(f"{category:<20}: {total:.2f}")
+			budget_info = f"(budget: {BUDGETS[category]:.2f})" if category in BUDGETS else "No budget set"
+			alert = " - OVER BUDGET!" if category in BUDGETS and total > BUDGETS[category] else ""
+			print(f"{category:<15}: ${total:.2f} {budget_info}{alert}")
 	except FileNotFoundError:
 		print("No Transactions found!")
 	except ValueError:
@@ -351,6 +357,30 @@ def  monthly_summary_report():
 		print(f"Unexpected error: {e}")
 
 
+def set_budget():
+	try:
+		print("Available catagories: ",", ".join(CATEGORIES))
+		category = input("Enter category to set budget(or cancel to exit)").strip().lower()
+		if category == 'cancel':
+			print("budget setting Canceled.")
+			return
+		if category not in CATEGORIES:
+			print("Invalid category. Choose from ", ", ".join(CATEGORIES))
+			return
+		while True:
+			budget_input = input("Enter budget amount (positive number): ").strip()
+			try:
+				budget = float(budget_input)
+				if budget <= 0:
+					print("budget must be positive")
+					continue
+				BUDGETS[category] = budget
+				print(f"budget for {category} set to ${budget:.2f}")
+				break
+			except ValueError:
+				print("Please enter a valid number.")
+	except Exception as e:
+		print(f"Unexpected error: {e}")
 
 
 
@@ -369,8 +399,9 @@ def show_menu():
 		print("9. import from json")
 		print("10. Search by Category")
 		print("11. Monthly summary report")
-		print("12. Exit..")
-		choice = input("Enter choice 1-12: ").strip()
+		print("12. Set Budget for category")
+		print("13. Exit..")
+		choice = input("Enter choice 1-13: ").strip()
 		try:
 			choice = int(choice)
 			if choice== 1:
@@ -396,10 +427,12 @@ def show_menu():
 			elif choice == 11:
 				monthly_summary_report()
 			elif choice == 12:
+				set_budget()
+			elif choice == 13:
 				print("Exiting...")
 				break
 			else:
-				print("Invalid choice. Please enter 1-12.")
+				print("Invalid choice. Please enter 1-13.")
 		except ValueError:
 			print("Invalid input. Please enter a number.")
 

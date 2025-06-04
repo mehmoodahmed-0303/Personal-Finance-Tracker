@@ -57,3 +57,4 @@ date,type,category,amount,description
 2025-05-31 10:48:56,income,salary,1000.0,[4]
 2025-06-03 22:49:35,income,others,345.0,random description
 2025-06-03 23:29:08,income,others,53.0,hello world
+2025-06-04 18:51:27,expense,rent,6000.0,shop rent
