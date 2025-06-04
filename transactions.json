@@ -28,10 +28,10 @@
         "description": "1200 usd for pc and rent and etx"
     },
     {
-        "date": "2025-05-31 11:27:14",
+        "date": "2025-06-03 23:32:39",
         "type": "expense",
         "category": "instrument",
-        "amount": 500.0,
+        "amount": 4567.0,
         "description": "500 usd for some house use instrument"
     },
     {
@@ -383,13 +383,6 @@
         "category": "sell",
         "amount": 1500.0,
         "description": "total sell on date 03/5/25"
-    },
-    {
-        "date": "2025-06-02 10:03:33",
-        "type": "income",
-        "category": "sell",
-        "amount": 950.0,
-        "description": "total sell of the day"
     },
     {
         "date": "2025-05-31 10:48:56",
@@ -406,10 +399,10 @@
         "description": "random description"
     },
     {
-        "date": "2025-06-03 23:10:46",
-        "type": "expense",
+        "date": "2025-06-03 23:29:08",
+        "type": "income",
         "category": "others",
-        "amount": 1000.0,
-        "description": "i bought suit"
+        "amount": 53.0,
+        "description": "hello world"
     }
 ]

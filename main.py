@@ -8,6 +8,9 @@ import json
 
 DATA_FILE = "transactions.csv"
 CATEGORIES = ['salary','freelance','groceries','rent','utilities','entertainment','others']
+
+
+
 def load_budgets():
 	global BUDGETS
 	BUDGETS = {}
@@ -21,6 +24,14 @@ def load_budgets():
 load_budgets()
 
 
+def validate_date(date_str):
+	try:
+		datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
+		return True
+	except ValueError:
+		return False
+
+
 def initialize_csv():
     if not os.path.exists(DATA_FILE):
         with open(DATA_FILE, 'w', newline='') as file:
@@ -29,6 +40,9 @@ def initialize_csv():
 
 def add_transaction(t_type, category, amount, description):
 	date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+	if not validate_date(date):
+		print("Error: Invalid date format.")
+		return
 	with open(DATA_FILE, 'a', newline='') as file:
 		writer = csv.writer(file)
 		writer.writerow([date, t_type, category, amount, description])
@@ -235,7 +249,8 @@ def edit_transaction():
 					description = input("Enter new description (or press enter to keep origional)")
 					description = description if description else transactions[index][4]
 
-					transactions[index] = [datetime.now().strftime('%Y-%m-%d %H:%M:%S'), t_type, category, str(amount), description]
+					date = datetime.now().strftime('"%Y-%m-%d %H:%M:%S"')
+					transactions[index] = [date, t_type, category, str(amount), description]
 					with open(DATA_FILE, 'w', newline='') as file:
 						writer = csv.writer(file)
 						writer.writerow(headers)
