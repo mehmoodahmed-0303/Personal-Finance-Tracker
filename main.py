@@ -89,10 +89,27 @@ def display_transactions():
 		with open(DATA_FILE, 'r') as file:
 			reader = csv.reader(file)
 			headers = next(reader) # Skip Header row
-			print("\nTransaction History: ")
-			print(f"{headers[0]:<20} {headers[1]:<10} {headers[2]:<15} {headers[3]:<10} {headers[4]}")
-			for row in reader:
-				print(f"{row[0]:<20} {row[1]:<10} {row[2]:<15} {row[3]:<10} {row[4]}")
+			transactions = list(reader)
+		if not transactions:
+			print("No transactions found.")
+
+		print("\nSort by: 1. Date(default) 2. Amount 3. Category:")
+		sort_choice = input("Enter choice (1-3) or press enter fro date: ").strip()
+		if sort_choice == '2':
+			transactions.sort(key=lambda x: float(x[3]), reverse=True)
+			sort_lable = "Sorted by Amount(Descending)"
+		elif sort_choice == 3:
+			transactions.sort(key=lambda x: x[2].lower())
+			sort_lable = "Sorted by Category"
+		else:
+			transactions.sort(key=lambda x: x[0], reverse=True)
+			sort_lable = "Sorted by Date (newest first)"
+
+
+		print(f"\nTransaction History: {sort_lable}")
+		print(f"{headers[0]:<20} {headers[1]:<10} {headers[2]:<15} {headers[3]:<10} {headers[4]}")
+		for row in transactions:
+			print(f"{row[0]:<20} {row[1]:<10} {row[2]:<15} {row[3]:<10} {row[4]}")
 	except FileNotFoundError:
 		print("No Transactions found.")
 
