@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 import matplotlib.pyplot as plt
 import json
+import re
 
 
 
@@ -309,11 +310,25 @@ def export_to_json():
 
 def import_from_json():
 	try:
-		with open('transactions.json', 'r') as file:
+		while True:
+			filename = input("Enter Json data file name (e.g:transactions.json or 'cancel' to exit)").strip()
+			if filename.lower() == 'cancel':
+				print("import canceled.")
+				return
+			if not filename:
+				print("file name can not be empty.")
+				continue
+			if not re.match(r'^[\w\-]+\.json', filename):
+				print("Invalid file name. must be a .json file (e.g transactions.json)")
+				continue
+			break
+
+		with open(filename, 'r') as file:
 			data = json.load(file)
 		if not data:
-			print("No transactions found in json files")
+			print(f"No transactions found in {filename}")
 			return
+
 		with open(DATA_FILE, 'a', newline='') as file:
 			writer = csv.writer(file)
 			for transaction in data:
@@ -330,11 +345,12 @@ def import_from_json():
 				except (KeyError, ValueError) as e:
 					print(f"skipping invalid transaction {transaction} {e}")
 					continue
+
 		print("transactions imported from transactions.json")
 	except FileNotFoundError:
-		print("transactions.json not found.")
+		print(f"{filename} not found.")
 	except json.JSONDecodeError:
-		print("Error: Invalid json format in transactions.json")
+		print(f"Error: Invalid json format in {filename}")
 	except Exception as e:
 		print(f"Unexpected error: {e}")
 

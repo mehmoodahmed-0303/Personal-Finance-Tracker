@@ -115,3 +115,119 @@ date,type,category,amount,description
 2025-05-31 10:48:56,income,salary,1000.0,[4]
 2025-06-03 22:49:35,income,others,345.0,random description
 2025-06-03 23:29:08,income,others,53.0,hello world
+2025-05-31 10:48:56,income,salary,1000.0,Monthly salary
+2025-05-31 11:04:57,expense,groceries,750.0,Aalu + roll + oil
+2025-05-31 11:24:44,income,salary,1500.0,1500 usd the salary of month july
+2025-06-02 13:59:17,expense,groceries,1200.0,1200 usd for pc and rent and etx
+2025-06-03 23:32:39,expense,instrument,4567.0,500 usd for some house use instrument
+2025-05-31 14:28:19,income,groceries,1500.0,
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25
+2025-06-02 10:03:33,income,sell,950.0,total sell of the day
+2025-05-31 10:48:56,income,salary,1000.0,[4]
+2025-05-31 11:04:57,expense,groceries,750.0,[4]
+2025-05-31 11:24:44,income,salary,1500.0,[4]
+2025-06-02 13:59:17,expense,groceries,1200.0,[4]
+2025-05-31 11:27:14,expense,instrument,500.0,[4]
+2025-05-31 14:28:19,income,groceries,1500.0,[4]
+2025-05-31 14:42:06,income,sell,1500.0,[4]
+2025-06-02 10:03:33,income,sell,950.0,[4]
+2025-05-31 10:48:56,income,salary,1000.0,Monthly salary
+2025-05-31 11:04:57,expense,groceries,750.0,Aalu + roll + oil
+2025-05-31 11:24:44,income,salary,1500.0,1500 usd the salary of month july
+2025-06-02 13:59:17,expense,groceries,1200.0,1200 usd for pc and rent and etx
+2025-05-31 11:27:14,expense,instrument,500.0,500 usd for some house use instrument
+2025-05-31 14:28:19,income,groceries,1500.0,
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25
+2025-06-02 10:03:33,income,sell,950.0,total sell of the day
+2025-05-31 10:48:56,income,salary,1000.0,[4]
+2025-05-31 11:04:57,expense,groceries,750.0,[4]
+2025-05-31 11:24:44,income,salary,1500.0,[4]
+2025-06-02 13:59:17,expense,groceries,1200.0,[4]
+2025-05-31 11:27:14,expense,instrument,500.0,[4]
+2025-05-31 14:28:19,income,groceries,1500.0,[4]
+2025-05-31 14:42:06,income,sell,1500.0,[4]
+2025-06-02 10:03:33,income,sell,950.0,[4]
+2025-05-31 10:48:56,income,salary,1000.0,Monthly salary
+2025-05-31 11:04:57,expense,groceries,750.0,Aalu + roll + oil
+2025-05-31 11:24:44,income,salary,1500.0,1500 usd the salary of month july
+2025-06-02 13:59:17,expense,groceries,1200.0,1200 usd for pc and rent and etx
+2025-05-31 11:27:14,expense,instrument,500.0,500 usd for some house use instrument
+2025-05-31 14:28:19,income,groceries,1500.0,
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25
+2025-06-02 10:03:33,income,sell,950.0,total sell of the day
+2025-05-31 10:48:56,income,salary,1000.0,[4]
+2025-05-31 11:04:57,expense,groceries,750.0,[4]
+2025-05-31 11:24:44,income,salary,1500.0,[4]
+2025-06-02 13:59:17,expense,groceries,1200.0,[4]
+2025-05-31 11:27:14,expense,instrument,500.0,[4]
+2025-05-31 14:28:19,income,groceries,1500.0,[4]
+2025-05-31 14:42:06,income,sell,1500.0,[4]
+2025-06-02 10:03:33,income,sell,950.0,[4]
+2025-05-31 10:48:56,income,salary,1000.0,Monthly salary
+2025-05-31 11:04:57,expense,groceries,750.0,Aalu + roll + oil
+2025-05-31 11:24:44,income,salary,1500.0,1500 usd the salary of month july
+2025-06-02 13:59:17,expense,groceries,1200.0,1200 usd for pc and rent and etx
+2025-05-31 11:27:14,expense,instrument,500.0,500 usd for some house use instrument
+2025-05-31 14:28:19,income,groceries,1500.0,
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25
+2025-05-31 10:48:56,income,salary,1000.0,[4]
+2025-06-03 22:49:35,income,others,345.0,random description
+2025-06-03 23:29:08,income,others,53.0,hello world
+2025-05-31 10:48:56,income,salary,1000.0,Monthly salary
+2025-05-31 11:04:57,expense,groceries,750.0,Aalu + roll + oil
+2025-05-31 11:24:44,income,salary,1500.0,1500 usd the salary of month july
+2025-06-02 13:59:17,expense,groceries,1200.0,1200 usd for pc and rent and etx
+2025-06-03 23:32:39,expense,instrument,4567.0,500 usd for some house use instrument
+2025-05-31 14:28:19,income,groceries,1500.0,
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25
+2025-06-02 10:03:33,income,sell,950.0,total sell of the day
+2025-05-31 10:48:56,income,salary,1000.0,[4]
+2025-05-31 11:04:57,expense,groceries,750.0,[4]
+2025-05-31 11:24:44,income,salary,1500.0,[4]
+2025-06-02 13:59:17,expense,groceries,1200.0,[4]
+2025-05-31 11:27:14,expense,instrument,500.0,[4]
+2025-05-31 14:28:19,income,groceries,1500.0,[4]
+2025-05-31 14:42:06,income,sell,1500.0,[4]
+2025-06-02 10:03:33,income,sell,950.0,[4]
+2025-05-31 10:48:56,income,salary,1000.0,Monthly salary
+2025-05-31 11:04:57,expense,groceries,750.0,Aalu + roll + oil
+2025-05-31 11:24:44,income,salary,1500.0,1500 usd the salary of month july
+2025-06-02 13:59:17,expense,groceries,1200.0,1200 usd for pc and rent and etx
+2025-05-31 11:27:14,expense,instrument,500.0,500 usd for some house use instrument
+2025-05-31 14:28:19,income,groceries,1500.0,
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25
+2025-06-02 10:03:33,income,sell,950.0,total sell of the day
+2025-05-31 10:48:56,income,salary,1000.0,[4]
+2025-05-31 11:04:57,expense,groceries,750.0,[4]
+2025-05-31 11:24:44,income,salary,1500.0,[4]
+2025-06-02 13:59:17,expense,groceries,1200.0,[4]
+2025-05-31 11:27:14,expense,instrument,500.0,[4]
+2025-05-31 14:28:19,income,groceries,1500.0,[4]
+2025-05-31 14:42:06,income,sell,1500.0,[4]
+2025-06-02 10:03:33,income,sell,950.0,[4]
+2025-05-31 10:48:56,income,salary,1000.0,Monthly salary
+2025-05-31 11:04:57,expense,groceries,750.0,Aalu + roll + oil
+2025-05-31 11:24:44,income,salary,1500.0,1500 usd the salary of month july
+2025-06-02 13:59:17,expense,groceries,1200.0,1200 usd for pc and rent and etx
+2025-05-31 11:27:14,expense,instrument,500.0,500 usd for some house use instrument
+2025-05-31 14:28:19,income,groceries,1500.0,
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25
+2025-06-02 10:03:33,income,sell,950.0,total sell of the day
+2025-05-31 10:48:56,income,salary,1000.0,[4]
+2025-05-31 11:04:57,expense,groceries,750.0,[4]
+2025-05-31 11:24:44,income,salary,1500.0,[4]
+2025-06-02 13:59:17,expense,groceries,1200.0,[4]
+2025-05-31 11:27:14,expense,instrument,500.0,[4]
+2025-05-31 14:28:19,income,groceries,1500.0,[4]
+2025-05-31 14:42:06,income,sell,1500.0,[4]
+2025-06-02 10:03:33,income,sell,950.0,[4]
+2025-05-31 10:48:56,income,salary,1000.0,Monthly salary
+2025-05-31 11:04:57,expense,groceries,750.0,Aalu + roll + oil
+2025-05-31 11:24:44,income,salary,1500.0,1500 usd the salary of month july
+2025-06-02 13:59:17,expense,groceries,1200.0,1200 usd for pc and rent and etx
+2025-05-31 11:27:14,expense,instrument,500.0,500 usd for some house use instrument
+2025-05-31 14:28:19,income,groceries,1500.0,
+2025-05-31 14:42:06,income,sell,1500.0,total sell on date 03/5/25
+2025-05-31 10:48:56,income,salary,1000.0,[4]
+2025-06-03 22:49:35,income,others,345.0,random description
+2025-06-03 23:29:08,income,others,53.0,hello world
